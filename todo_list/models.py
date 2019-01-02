@@ -10,4 +10,4 @@ class List(models.Model):
     completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.item
+        return 'Item: ' + self.item + ' | Status:' + str(self.completed)

@@ -3,5 +3,33 @@
 {% block title %} Home {% endblock %}
 
 {% block content%}
-<h1>Hello World!</h1>
+<table class="table">
+<thead>
+    <tr>
+    <th scope="col">Item</th>
+    <th scope="col">Completed</th>
+    <th scope="col">Action</th>
+    </tr>
+</thead>
+<tbody>
+    {% if todo_lists %}
+        {% for i in todo_lists %}
+            {% if i.completed %}
+                <tr class="table-secondary">
+                    <td class="strike">{{ i.item }}</td>
+                    <td>{{ i.completed }}</td>
+                    <td>Delete</td>
+                </tr>   
+            {% else %}
+                <tr>
+                    <td>{{ i.item }}</td>
+                    <td>{{ i.completed }}</td>
+                    <td>Delete</td>
+                </tr>   
+            {% endif %}
+        {% endfor %}
+    
+    {% endif %}
+</tbody>
+</table>
 {% endblock %}
