@@ -17,7 +17,10 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url('about/', views.about, name='About'),
-    url('', views.home, name='Home')
+    url('about/', views.about, name='about'),
+    url('delete/(?P<list_id>.*)', views.delete, name='delete'),
+    url('edit/(?P<list_id>.*)', views.edit, name='edit'),
+    url('updatestatus/(?P<list_id>.*)/(?P<flag>.*)', views.updatestatus, name='updatestatus'),
+    url('', views.home, name='home'),
     
 ]

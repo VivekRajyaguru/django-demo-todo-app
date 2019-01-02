@@ -2,7 +2,19 @@
 
 {% block title %} Home {% endblock %}
 
-{% block content%}
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-info alert-dismissable" role="alert">
+            <button class="close" data-dismiss="alert">
+                <small><sup>x</sup></small>
+            </button>
+            {{message}}
+        </div>    
+    {% endfor %}
+{% endif %}
+
 <table class="table">
 <thead>
     <tr>
@@ -16,15 +28,15 @@
         {% for i in todo_lists %}
             {% if i.completed %}
                 <tr class="table-secondary">
-                    <td class="strike">{{ i.item }}</td>
-                    <td>{{ i.completed }}</td>
-                    <td>Delete</td>
+                    <td class="strike"> <a href="{% url 'edit' i.id %}">{{ i.item }}</a> </td>
+                    <td><a href="{% url 'updatestatus' i.id 0 %}"> {{ i.completed }} </a></td>
+                    <td><a href="{% url 'delete' i.id %}">Delete</a></td>
                 </tr>   
             {% else %}
                 <tr>
-                    <td>{{ i.item }}</td>
-                    <td>{{ i.completed }}</td>
-                    <td>Delete</td>
+                    <td> <a href="{% url 'edit' i.id %}">{{ i.item }}</a> </td>
+                    <td><a href="{% url 'updatestatus' i.id 1 %}"> {{ i.completed }} </a></td>
+                    <td><a href="{% url 'delete' i.id %}">Delete</a></td>
                 </tr>   
             {% endif %}
         {% endfor %}

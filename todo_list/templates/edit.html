@@ -1,0 +1,16 @@
+{% extends 'header.html' %}
+
+{% block title %} Edit item {% endblock %}
+
+{% block content %}
+
+{% if item %}
+    <form method="POST">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="{{ item.item }}" aria-label="Search" name="item" value="{{ item.item }}">
+        <input type="hidden" name="completed" value="{{ item.completed }}">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Edit</button>
+    </form>
+{% endif %}
+
+{% endblock %}
